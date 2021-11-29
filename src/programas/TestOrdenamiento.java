@@ -33,12 +33,17 @@ public class TestOrdenamiento {
             DatosOrdenados mob = m.bubbleSort();
             t2 = System.nanoTime();   // stop
             t= t2 - t1;
-            System.out.println("n="+ n + " t=" + t + " ns. Burbuja=" + mob);
-            t1 = System.nanoTime();   // start
+            System.out.println("n="+ n + " t=" + t + " ns. Burbuja= " + mob);
+        t1 = System.nanoTime();   // start
             DatosOrdenados moi = m.insertSort();
             t2 = System.nanoTime();   // stop
             t = t2 - t1;
-            System.out.println("n="+ n + " t=" + t + " ns. Inserción" + moi);
+            System.out.println("n="+ n + " t=" + t + " ns. Inserción " + moi);
+        t1 = System.nanoTime();   // start
+            DatosOrdenados rad = m.Radix();
+            t2 = System.nanoTime();   // stop
+            t = t2 - t1;
+            System.out.println("n="+ n + " t=" + t + " ns. Radix " + rad);
     }
     
 }
