@@ -24,8 +24,8 @@ public class Ordenamientos extends javax.swing.JFrame {
      */
     public Ordenamientos() {
         initComponents();
-        setBackground(Color.white);
-        setForeground(Color.black);
+        setBackground(Color.black);
+        setForeground(Color.white);
         setResizable(false);
         setLocationRelativeTo(null);
         ((JPanel) getContentPane()).setOpaque (false);
@@ -114,16 +114,13 @@ public class Ordenamientos extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Algoritmos de ordenamiento");
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("¿Cuántos datos son?");
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("¿Cuál es el valor máximo?");
 
         tf1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -137,19 +134,14 @@ public class Ordenamientos extends javax.swing.JFrame {
             }
         });
 
-        bu.setForeground(new java.awt.Color(255, 255, 255));
         bu.setText("Burbuja");
 
-        in.setForeground(new java.awt.Color(255, 255, 255));
         in.setText("Inserción");
 
-        qu.setForeground(new java.awt.Color(255, 255, 255));
         qu.setText("Quicksort");
 
-        sh.setForeground(new java.awt.Color(255, 255, 255));
         sh.setText("Shellsort");
 
-        ra.setForeground(new java.awt.Color(255, 255, 255));
         ra.setText("Radix");
 
         acept.setText("Aceptar");
