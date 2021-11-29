@@ -11,13 +11,12 @@ public class QuickSort {
         /*Indice del elemento más pequeño 
           e indica la posición correcta
           del pivote encontrada hasta ahora */
+        int i = (low-1);
         
-        int i = (low - 1);
-        
-        for(int j = low; j <= high - 1; j++){
+        for(int j = low; j <= high-1; j++){
         
             //Si el elemento actual es más pequeño que el pivote
-            if(arr[j] < pivote){
+            if(arr[j] > pivote){
 
                 //Incrementa el índice del elemento más pequeño
                 i++;
@@ -38,12 +37,12 @@ public class QuickSort {
     */
     static void quickSort(int[] arr, int low, int high){
         if(low < high){
-            //pi divide al índice, arr[p] ahora está a la derecha
+            //pi divide al índice, arr[pi] ahora está a la derecha
             int pi = particion(arr, low, high);
             
             //Separadamente ordenar elementos antes y después de la partición
-            quickSort(arr, low, pi - 1);
-            quickSort(arr, pi + 1, high);
+            quickSort(arr, low, pi - 1);//Before
+            quickSort(arr, pi + 1, high);//After
         }
     }
     //Función de imprimir el array ordenado

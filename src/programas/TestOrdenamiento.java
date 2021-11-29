@@ -40,7 +40,7 @@ public class TestOrdenamiento {
             t = t2 - t1;
             System.out.println("n = "+ n + " t = " + t + " ns. Inserción " + moi);
             t1 = System.nanoTime();   // start
-            DatosOrdenados moq = m.Quicksort();
+            DatosOrdenados moq = m.QuicksortA();
             t2 = System.nanoTime();   // stop
             t = t2 - t1;
             System.out.println("n = "+ n + " t = " + t + " ns. QuickSort " + moq);

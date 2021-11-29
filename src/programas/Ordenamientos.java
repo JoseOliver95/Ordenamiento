@@ -47,41 +47,50 @@ public class Ordenamientos extends javax.swing.JFrame {
         if(nn.isEmpty() || ss.isEmpty()){
             JOptionPane.showMessageDialog(null, "¡Llena los dos campos!");
         }else{
-            if(bu.isSelected()){
+            if(bu.isSelected() && as.isSelected()){
                 t1 = System.nanoTime();
                 ta.append("Burbuja:\n");
                 ta.append(d+"\n");
                 DatosOrdenados mob = m.bubbleSort();
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
-                ta.append("n = "+ n + " t = " + t +"ns.\n"+ mob+"\n");
+                ta.append("n = "+ n + " t = " + t +"ns.\n"+ mob+"\n\n");
             }
-            if(in.isSelected()){
+            if(in.isSelected() && as.isSelected()){
                 t1 = System.nanoTime();
                 ta.append("Insert:\n");
                 ta.append(d+"\n");
                 DatosOrdenados moi = m.insertSort();
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
-                ta.append("n = "+ n + " t = " + t + " ns.\n" + moi+"\n");
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + moi+"\n\n");
             }
-            if(qu.isSelected()){
+            if(qu.isSelected() && as.isSelected()){
                 t1 = System.nanoTime();
-                ta.append("QuickSort:\n");
+                ta.append("QuickSort Ascendente:\n");
                 ta.append(d+"\n");
-                DatosOrdenados moq = m.Quicksort();
+                DatosOrdenados moqa = m.QuicksortA();
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
-                ta.append("n = "+ n + " t = " + t + " ns.\n" + moq+"\n");
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + moqa+"\n\n");
             }
-            if(sh.isSelected()){
+            if(qu.isSelected() && des.isSelected()){
+                t1 = System.nanoTime();
+                ta.append("QuickSort Descendente:\n");
+                ta.append(d+"\n");
+                DatosOrdenados moqd = m.QuicksortD();
+                t2 = System.nanoTime();   // stop
+                t = t2 - t1;
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + moqd+"\n\n");
+            }
+            if(sh.isSelected() && as.isSelected()){
                 t1 = System.nanoTime();
                 ta.append("ShellSort:\n");
                 ta.append(d+"\n");
                 DatosOrdenados mos = m.Shellsort();
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
-                ta.append("n = "+ n + " t = " + t + " ns.\n" + mos+"\n");
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + mos+"\n\n");
             }
         }
     }
@@ -109,6 +118,8 @@ public class Ordenamientos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ta = new javax.swing.JTextArea();
         clean = new javax.swing.JButton();
+        as = new javax.swing.JCheckBox();
+        des = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -165,56 +176,69 @@ public class Ordenamientos extends javax.swing.JFrame {
             }
         });
 
+        as.setText("Ascendente");
+
+        des.setText("Descendente");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tf1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tf2))
-                .addGap(69, 69, 69))
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(bu)
-                .addGap(40, 40, 40)
-                .addComponent(in)
-                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(qu)
-                        .addGap(35, 35, 35)
-                        .addComponent(sh)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addComponent(ra)
-                        .addGap(52, 52, 52))
+                        .addComponent(bu)
+                        .addGap(40, 40, 40)
+                        .addComponent(in)
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(qu)
+                                .addGap(35, 35, 35)
+                                .addComponent(sh)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addComponent(ra)
+                                .addGap(52, 52, 52))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(acept)
+                                    .addComponent(clean))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(acept)
-                            .addComponent(clean))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(des)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tf1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(as)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2)))
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(tf2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel3)
+                    .addComponent(as))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addComponent(tf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(des))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bu)
                     .addComponent(in)
@@ -227,7 +251,7 @@ public class Ordenamientos extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(clean)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -285,8 +309,10 @@ public class Ordenamientos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton acept;
+    public static javax.swing.JCheckBox as;
     public static javax.swing.JCheckBox bu;
     public static javax.swing.JButton clean;
+    public static javax.swing.JCheckBox des;
     public static javax.swing.JCheckBox in;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

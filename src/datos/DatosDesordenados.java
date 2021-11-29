@@ -17,6 +17,10 @@ public class DatosDesordenados {
         this.limiteSuperior = limite;
         this.size = size;
     }
+
+    public DatosDesordenados() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public void agregarDato(int valor){
         valores[size]= valor;
@@ -224,9 +228,9 @@ public class DatosDesordenados {
     }
 }*/
 
-   public DatosOrdenados Quicksort(){
+   public DatosOrdenados QuicksortA(){
        int [] q = this.getCopiaValores();
-       this.Quicksort(q, 0, q.length - 1);
+       this.QuicksortA(q, 0, q.length - 1);
        System.out.println("QS-comparaciones = " + cq1);
        Ordenamientos.ta.append("QS-comparaciones = " + cq1+"\n");
        System.out.println("QS-iteraciones = " + cq2);
@@ -235,16 +239,16 @@ public class DatosDesordenados {
    }
    static int cq1 = 0;
    static int cq2 = 0;
-   private void Quicksort(int[] arr, int low, int high){
+   private void QuicksortA(int[] arr, int low, int high){
         if(low < high){
             cq1++;
-            int pi = Quick(arr, low, high);
+            int pi = QuickA(arr, low, high);
             
-            Quicksort(arr, low, pi - 1);
-            Quicksort(arr, pi + 1, high);
+            QuicksortA(arr, low, pi - 1);
+            QuicksortA(arr, pi + 1, high);
         }
    }
-   private int Quick(int[] arr, int low, int high){
+   private int QuickA(int[] arr, int low, int high){
        int pivote = arr[high];
        
        int i = (low - 1);
@@ -253,6 +257,46 @@ public class DatosDesordenados {
            cq2++;
            if(arr[j] < pivote){
                cq1++;
+               i++;
+               int temp = arr[i];
+               arr[i] = arr[j];
+               arr[j] = temp;
+           }
+       }
+       int temp = arr[i+1];
+       arr[i+1] = arr[high];
+       arr[high] = temp;
+       return (i + 1);
+   }
+   public DatosOrdenados QuicksortD(){
+       int [] q = this.getCopiaValores();
+       this.QuicksortD(q, 0, q.length - 1);
+       System.out.println("QS-comparaciones = " + cq3);
+       Ordenamientos.ta.append("QS-comparaciones = " + cq3+"\n");
+       System.out.println("QS-iteraciones = " + cq4);
+       Ordenamientos.ta.append("QS-iteraciones = " + cq4+"\n");
+       return new DatosOrdenados(q);
+   }
+   static int cq3 = 0;
+   static int cq4 = 0;
+   private void QuicksortD(int[] arr, int low, int high){
+        if(low < high){
+            cq3++;
+            int pi = QuickD(arr, low, high);
+            
+            QuicksortD(arr, low, pi - 1);
+            QuicksortD(arr, pi + 1, high);
+        }
+   }
+   private int QuickD(int[] arr, int low, int high){
+       int pivote = arr[high];
+       
+       int i = (low - 1);
+       
+       for(int j = low; j <= high - 1; j++){
+           cq4++;
+           if(arr[j] > pivote){
+               cq3++;
                i++;
                int temp = arr[i];
                arr[i] = arr[j];
