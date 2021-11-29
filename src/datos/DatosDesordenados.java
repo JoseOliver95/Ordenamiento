@@ -7,8 +7,8 @@ package datos;
 public class DatosDesordenados {
     // Atributos
     private int[] valores; 
-    private int limiteSuperior; 
-    private int size; 
+    private int limiteSuperior;//Valor más grande
+    private int size; //Valor de n
 
     public DatosDesordenados(int limite, int size) {
         this.valores = new int[size];
@@ -129,10 +129,9 @@ public class DatosDesordenados {
 			 mergesort (v, m+1, r); 
 			 merge (v, l, m, r); 
 		 }
-	}
-    static int cm=0;
-   private void merge (int v[], int l, int m, int r)
-	{
+   }
+   static int cm = 0;//Variable de clase
+   private void merge (int v[], int l, int m, int r){
 	//Encuentra el tamaño de los sub-vectores para unirlos.
 	  int n1 = m - l + 1;
 	  int n2 = r - m;
@@ -144,43 +143,78 @@ public class DatosDesordenados {
 	  //Copia los datos a los arreglos temporales.
 	  for (int i=0; i < n1; i++) {
               cm++;
-		arrIzq[i] = v[l+i];
+              arrIzq[i] = v[l+i];
 	  }
 	  for (int j=0; j < n2; j++) {
               cm++;
-		arrDer[j] = v[m + j + 1];
+              arrDer[j] = v[m + j + 1];
 	  }
 	  // Combinación (mezcla) de los dos arreglos:
 	  int i = 0, j = 0;
 	  int k = l;
-	  while (i < n1 && j < n2) {//Ordenamiento.
-                cm++;
-		if (arrIzq[i] <= arrDer[j]) {
-			v[k] = arrIzq[i];
-			i++;
-		} else {
-			v[k] = arrDer[j];
-			j++;
-		}
-		k++;
+	  while(i < n1 && j < n2){//Ordenamiento.
+              cm++;
+              if (arrIzq[i] <= arrDer[j]) {
+                  v[k] = arrIzq[i];
+                  i++;
+              }else{
+                  v[k] = arrDer[j];
+                  j++;
+              }
+              k++;
 	  }//Fin del while.
 
 	  /* Si quedan elementos por ordenar */
 	  //Copiar los elementos restantes de arrIzq[].
-	  while (i < n1) {
+	  while(i < n1){
               cm++;
-	    v[k] = arrIzq[i];
-	    i++;
-	    k++;
+              v[k] = arrIzq[i];
+              i++;
+              k++;
 	  }
 	  //Copiar los elementos restantes de arrDer[].
-	  while (j < n2) {
+	  while(j < n2){
               cm++;
-	    v[k] = arrDer[j];
-	    j++;
-	    k++;
+              v[k] = arrDer[j];
+              j++;
+              k++;
 	  }
-	}
+   }
+   public DatosOrdenados Quicksort(){
+       int [] q = this.getCopiaValores();
+       this.Quicksort(q, 0, q.length - 1);
+       System.out.println("QS-comparaciones = " + cq);
+       return new DatosOrdenados(q);
+   }
+   static int cq = 0;
+   private void Quicksort(int[] arr, int low, int high){
+        if(low < high){
+            cq++;
+            int pi = Quick(arr, low, high);
+            
+            Quicksort(arr, low, pi - 1);
+            Quicksort(arr, pi + 1, high);
+        }
+   }
+   private int Quick(int[] arr, int low, int high){
+       int pivote = arr[high];
+       
+       int i = (low - 1);
+       
+       for(int j = low; j <= high - 1; j++){
+           cq++;
+           if(arr[j] < pivote){
+               i++;
+               int temp = arr[i];
+               arr[i] = arr[j];
+               arr[j] = temp;
+           }
+       }
+       int temp = arr[i+1];
+       arr[i+1] = arr[high];
+       arr[high] = temp;
+       return (i + 1);
+   }
     
     @Override
     public String toString(){
