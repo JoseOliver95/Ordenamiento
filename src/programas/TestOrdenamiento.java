@@ -44,6 +44,11 @@ public class TestOrdenamiento {
             t2 = System.nanoTime();   // stop
             t = t2 - t1;
             System.out.println("n="+ n + " t=" + t + " ns. Inserción" + moi);
+             t1 = System.nanoTime();   // start
+            DatosOrdenados mos = m.Shellsort();
+            t2 = System.nanoTime();   // stop
+            t = t2 - t1;
+            System.out.println("n = "+ n + " t = " + t + " ns. ShellSort " + mos);
     }
     
 }

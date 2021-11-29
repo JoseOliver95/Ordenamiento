@@ -183,11 +183,11 @@ public class DatosDesordenados {
 	  }
 	}
 
-public DatosOrdenados Shellsort(int A[]){
-  int [] a = this.getCopiaValores();
-
-        int salto, aux, i;
-        boolean cambios;
+public DatosOrdenados Shellsort(){
+ 
+    int [] A = this.getCopiaValores();
+    int salto, aux, i;
+    boolean cambios;
         
   
         for (salto = A.length / 2; salto != 0; salto /= 2) {
@@ -208,13 +208,13 @@ public DatosOrdenados Shellsort(int A[]){
         return new DatosOrdenados(A);
        
     }
-   static void Impresion (int[] numeros){
-   for (int i = 0; i < numeros.length; i++) {
-   System.out.println("["+numeros[i]+"]");
-    }
-   
-   }
+static void Impresion (int[] numeros){
+for (int i = 0; i < numeros.length; i++) {
+System.out.println("["+numeros[i]+"]");
+}
+}
 
+   
     @Override
     public String toString(){
         String cad = "Datos DESORDENADOS: ";
