@@ -43,6 +43,7 @@ public class Ordenamientos extends javax.swing.JFrame {
         m = new DatosDesordenados(s, n);
         m.generarValores();
         d = m.toString();
+        DatosDesordenados b = new DatosDesordenados();
         
         if(nn.isEmpty() || ss.isEmpty()){
             JOptionPane.showMessageDialog(null, "¡Llena los dos campos!");
@@ -54,7 +55,7 @@ public class Ordenamientos extends javax.swing.JFrame {
                 DatosOrdenados moba = m.bubbleSort();
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
-                ta.append("n = "+ n + " t = " + t +"ns.\n"+ moba+"\n\n");
+                ta.append("n = "+ n + " t = " + t +"ns.\n"+moba+"\n\n");
             }
             if(bu.isSelected() && des.isSelected()){
                 t1 = System.nanoTime();
@@ -127,7 +128,7 @@ public class Ordenamientos extends javax.swing.JFrame {
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
                 ta.append("n = "+ n + " t = " + t + " ns.\n" + mora+"\n\n");
-            }
+            }/*
             if(ra.isSelected() && des.isSelected()){
                 t1 = System.nanoTime();
                 ta.append("Radix Descendente:\n");
@@ -136,7 +137,7 @@ public class Ordenamientos extends javax.swing.JFrame {
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
                 ta.append("n = "+ n + " t = " + t + " ns.\n" + mord+"\n\n");
-            }
+            }*/
         }
     }
 
@@ -209,7 +210,7 @@ public class Ordenamientos extends javax.swing.JFrame {
 
         ta.setBackground(new java.awt.Color(0, 0, 0));
         ta.setColumns(20);
-        ta.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        ta.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
         ta.setForeground(new java.awt.Color(255, 255, 255));
         ta.setRows(5);
         jScrollPane1.setViewportView(ta);

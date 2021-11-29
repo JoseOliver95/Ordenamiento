@@ -30,25 +30,50 @@ public class TestOrdenamiento {
         System.out.println("" + m);
         
             t1 = System.nanoTime();   // start
-            DatosOrdenados mob = m.bubbleSort();
+            //DatosOrdenados mob = m.bubbleSort();
             t2 = System.nanoTime();   // stop
             t= t2 - t1;
-            System.out.println("n = "+ n + " t = " + t + " ns. Burbuja " + mob);
+            //System.out.println("n = "+ n + " t = " + t + " ns. Burbuja Asendente = " + mob);
+            t1 = System.nanoTime();   // start
+            DatosOrdenados mobd = m.bubbleSortD();
+            t2 = System.nanoTime();   // stop
+            t= t2 - t1;
+            System.out.println("n = "+ n + " t = " + t + " ns. Burbuja Descendente = " + mobd);
             t1 = System.nanoTime();   // start
             DatosOrdenados moi = m.insertSort();
             t2 = System.nanoTime();   // stop
             t = t2 - t1;
-            System.out.println("n = "+ n + " t = " + t + " ns. Inserción " + moi);
+            System.out.println("n="+ n + " t=" + t + " ns. Inserción Ascendente = " + moi);
+            t1 = System.nanoTime();   // start
+            DatosOrdenados moid = m.insertSortD();
+            t2 = System.nanoTime();   // stop
+            t = t2 - t1;
+            System.out.println("n="+ n + " t=" + t + " ns. Inserción Descendente = " + moid);
+            t1 = System.nanoTime();   // start
+            DatosOrdenados rad = m.Radixsort();
+            t2 = System.nanoTime();   // stop
+            t = t2 - t1;
+            System.out.println("n = "+ n + " t = " + t + " ns. Radix " + rad);
             t1 = System.nanoTime();   // start
             DatosOrdenados moq = m.QuicksortA();
             t2 = System.nanoTime();   // stop
             t = t2 - t1;
-            System.out.println("n = "+ n + " t = " + t + " ns. QuickSort " + moq);
+            System.out.println("n = "+ n + " t = " + t + " ns. QuickSort Ascendente = " + moq);
+            t1 = System.nanoTime();   // start
+            DatosOrdenados moqd = m.QuicksortD();
+            t2 = System.nanoTime();   // stop
+            t = t2 - t1;
+            System.out.println("n = "+ n + " t = " + t + " ns. QuickSort Descendente = " + moqd);
             t1 = System.nanoTime();   // start
             DatosOrdenados mos = m.Shellsort();
             t2 = System.nanoTime();   // stop
             t = t2 - t1;
-            System.out.println("n = "+ n + " t = " + t + " ns. ShellSort " + mos);
+            System.out.println("n = "+ n + " t = " + t + " ns. ShellSort Ascendente " + mos);
+            t1 = System.nanoTime();   // start
+            DatosOrdenados mosd = m.ShellsortD();
+            t2 = System.nanoTime();   // stop
+            t = t2 - t1;
+            System.out.println("n = "+ n + " t = " + t + " ns. ShellSort Descendente " + mosd);
     }
     
 }

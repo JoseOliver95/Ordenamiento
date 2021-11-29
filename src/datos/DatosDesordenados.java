@@ -1,11 +1,13 @@
 package datos;
 import java.util.Arrays;
 import programas.Ordenamientos;
+import datos.DatosOrdenados;
+
+import java.util.Arrays;
 
 /**
  *
  * @author Noemí Lara Acono
- * Rama creada
  */
 public class DatosDesordenados {
     // Atributos
@@ -384,113 +386,43 @@ public class DatosDesordenados {
        arr[high] = temp;
        return (i + 1);
    }
-   public DatosOrdenados Radixsort(){
-       int [] r = this.getCopiaValores();
-       this.Radixsort(r, r.length);
-       System.out.println("QS-comparaciones = " + cr1);
-       Ordenamientos.ta.append("QS-comparaciones = " + cr1+"\n");
-       System.out.println("QS-iteraciones = " + cr2);
-       Ordenamientos.ta.append("QS-iteraciones = " + cr2+"\n");
-       return new DatosOrdenados(r);
-   }
-   static int cr1 = 0;
-   static int cr2 = 0;
-   private void Radixsort(int arr[], int n){
-        int mx = arr[0];
-        for (int i = 1; i < n; i++){
-            cr2++;
-            if (arr[i] > mx){
-                cr1++;
-                mx = arr[i];
-            }
+  
+    public DatosOrdenados Radixsort(){
+         // obtener una copia de los datos desordenados
+        int [] r = this.getCopiaValores();
+        
+        int x,i,j=0;
+        int cont=0;
+        for (x=Integer.SIZE-1;x>=0;x--){
+            int aux[] = new int[r.length];
+        j=0;
+        for(i=0;i<r.length;i++){
+           
+        boolean mover = r[i]<<x>=0;
+        
+        if(x==0 ? !mover:mover){
+            aux[j]=r[i];
+            j++;
+        }else{
+           r[i-j]=r[i];
         }
-        int m = mx;
- 
-        for (int exp = 1; m / exp > 0; exp *= 10){
-            cr2++;
-            Radix(arr, n, exp);
+        
         }
-   }
-   private void Radix(int arr[], int n, int exp){
-        int output[] = new int[n]; // output array
-        int i;
-        int count[] = new int[10];
-        Arrays.fill(count, 0);
- 
-        for (i = 0; i < n; i++){
-            cr2++;
-            count[(arr[i] / exp) % 10]++;
+        for(i=j;i<aux.length;i++){
+            aux[i]=r[i-j];
+            cont++;
         }
- 
-        for (i = 1; i < 10; i++){
-            cr2++;
-            count[i] += count[i - 1];
+        r=aux;
         }
- 
-        for (i = n - 1; i >= 0; i--) {
-            cr2++;
-            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-            count[(arr[i] / exp) % 10]--;
-        }
- 
-        for (i = 0; i < n; i++){
-            cr2++;
-            arr[i] = output[i];
-        }
+        
+        
+        System.out.println("R-comparaciones = " + cont);
+	// devolver los datos ordenados
+        return new DatosOrdenados(r);
     }
-   public DatosOrdenados RadixsortD(){
-       int [] r = this.getCopiaValores();
-       this.RadixsortD(r, r.length);
-       System.out.println("QS-comparaciones = " + cr3);
-       Ordenamientos.ta.append("QS-comparaciones = " + cr3+"\n");
-       System.out.println("QS-iteraciones = " + cr4);
-       Ordenamientos.ta.append("QS-iteraciones = " + cr4+"\n");
-       return new DatosOrdenados(r);
-   }
-   static int cr3 = 0;
-   static int cr4 = 0;
-   private void RadixsortD(int arr[], int n){
-        int mx = arr[0];
-        for (int i = 1; i < n; i++){
-            cr4++;
-            if (arr[i] < mx){
-                cr3++;
-                mx = arr[i];
-            }
-        }
-        int m = mx;
- 
-        for (int exp = 1; m / exp > 0; exp *= 10)
-            RadixD(arr, n, exp);
-   }
-   private void RadixD(int arr[], int n, int exp){
-        int output[] = new int[n]; // output array
-        int i;
-        int count[] = new int[10];
-        Arrays.fill(count, 0);
- 
-        for (i = 0; i < n; i++){
-            cr4++;
-            count[(arr[i] / exp) % 10]++;
-        }
- 
-        for (i = 1; i < 10; i++){
-            cr4++;
-            count[i] += count[i - 1];
-        }
- 
-        for (i = n - 1; i >= 0; i--) {
-            cr4++;
-            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-            count[(arr[i] / exp) % 10]--;
-        }
- 
-        for (i = 0; i < n; i++){
-            cr4++;
-            arr[i] = output[i];
-        }
-    }
-   @Override
+    
+    
+    @Override
     public String toString(){
         String cad = "Datos DESORDENADOS: ";
         for (int x : valores){

@@ -16,6 +16,7 @@ public class DatosOrdenados {
         this.valores = valores;
     }
     
+    
     public int getSize(){
         return valores.length; 
     }

@@ -1,87 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package programas;
 
-import java.util.Arrays;
-
-/**
- *
- * @author hp
- */
 public class Radix {
-// A utility function to get maximum value in arr[]
-    static int getMax(int arr[], int n){
-        int mx = arr[0];
-        for (int i = 1; i < n; i++){
-            if (arr[i] > mx){
-                mx = arr[i];
+    
+        public static void main(String []  args){
+            int n=10;
+            int [] arreglo = new int[n];
+            for (int i=0; i<n; i++){
+                arreglo[i] = (int)(Math.random() * 100) + 1;
             }
+            for(int x : arreglo){
+                System.out.print(" " + x);
+            }
+            System.out.println("");
+            Radix(arreglo);
+            System.out.println("");
         }
-        return mx;
-    }
- 
-    // A function to do counting sort of arr[] according to
-    // the digit represented by exp.
-    static void countSort(int arr[], int n, int exp)
-    {
-        int output[] = new int[n]; // output array
-        int i;
-        int count[] = new int[10];
-        Arrays.fill(count, 0);
- 
-        // Store count of occurrences in count[]
-        for (i = 0; i < n; i++)
-            count[(arr[i] / exp) % 10]++;
- 
-        // Change count[i] so that count[i] now contains
-        // actual position of this digit in output[]
-        for (i = 1; i < 10; i++)
-            count[i] += count[i - 1];
- 
-        // Build the output array
-        for (i = n - 1; i >= 0; i--) {
-            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-            count[(arr[i] / exp) % 10]--;
+        
+        public static void Radix(int [] arreglo){
+        int x,i,j=0;
+       
+        for (x = Integer.SIZE - 1; x >= 0; x--){
+            int aux[] = new int[arreglo.length];
+            j=0;
+            for(i=0;i<arreglo.length;i++){
+                
+                boolean mover = arreglo[i]<<x>=0;
+        
+                if(x==0 ? !mover:mover){
+                    aux[j] = arreglo[i];
+                    j++;
+                }else{
+                    arreglo[i-j]=arreglo[i];
+                }
+            }
+            for(i=j;i<aux.length;i++){
+                aux[i]=arreglo[i-j];
+            }
+            arreglo=aux;
         }
- 
-        // Copy the output array to arr[], so that arr[] now
-        // contains sorted numbers according to current digit
-        for (i = 0; i < n; i++)
-            arr[i] = output[i];
-    }
- 
-    // The main function to that sorts arr[] of size n using
-    // Radix Sort
-    static void radixsort(int arr[], int n)
-    {
-        // Find the maximum number to know number of digits
-        int m = getMax(arr, n);
- 
-        // Do counting sort for every digit. Note that
-        // instead of passing digit number, exp is passed.
-        // exp is 10^i where i is current digit number
-        for (int exp = 1; m / exp > 0; exp *= 10)
-            countSort(arr, n, exp);
-    }
- 
-    // A utility function to print an array
-    static void print(int arr[], int n)
-    {
-        for (int i = 0; i < n; i++)
-            System.out.print(arr[i] + " ");
-    }
- 
-    /*Driver Code*/
-    public static void main(String[] args)
-    {
-        int arr[] = { 170, 45, 75, 90, 802, 24, 2, 66 };
-        int n = arr.length;
-           
-          // Function Call
-        radixsort(arr, n);
-        print(arr, n);
-    }
+        mostrar(arreglo);
+	}
+        public static void mostrar(int[] arreglo){
+            int k;
+            for (k=0;k<arreglo.length;k++){
+                System.out.print("["+arreglo[k]+"]");
+            }
+            System.out.println();
+        }
 }
