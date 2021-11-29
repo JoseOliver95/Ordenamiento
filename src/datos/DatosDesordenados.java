@@ -1,4 +1,5 @@
 package datos;
+import programas.Ordenamientos;
 
 /**
  *
@@ -87,7 +88,9 @@ public class DatosDesordenados {
             }
         }
         System.out.println("BS-comparaciones = " + cont);
+        Ordenamientos.ta.append("BS-comparaciones = " + cont+"\n");
         System.out.println("BS-intercambios = " + ci);
+        Ordenamientos.ta.append("BS-intercambios = " + ci+"\n");
         return new DatosOrdenados(arreglo);
     }
     
@@ -110,6 +113,7 @@ public class DatosDesordenados {
 		a[j] = aux; 
 	}
         System.out.println("IS-comparaciones = " + cont);
+        Ordenamientos.ta.append("IS-comparaciones = " + cont+"\n");
 	// devolver los datos ordenados
         return new DatosOrdenados(a);
     }
@@ -119,6 +123,7 @@ public class DatosDesordenados {
 	// Aquí va la llamada al método mergesort( arreglo, l, r)
 	this.mergesort( x, 0, x.length - 1);
         System.out.println("MS-comparaciones = " + cm);
+        Ordenamientos.ta.append("MS-comparaciones = " + cm+"\n");
 	return new DatosOrdenados(x);
     } // fin del método ordenacionMerge
     
@@ -182,41 +187,50 @@ public class DatosDesordenados {
 	  }
 	}
 
-public DatosOrdenados Shellsort(int A[]){
-  int [] a = this.getCopiaValores();
+    public DatosOrdenados Shellsort(){
+      int [] a = this.getCopiaValores();
 
-        int salto, aux, i;
-        boolean cambios;
-        
-  
-        for (salto = A.length / 2; salto != 0; salto /= 2) {
-            cambios = true;
-            while (cambios) {   // Mientras se intercambie algún elemento                                         
-                cambios = false;
-                for (i = salto; i < A.length; i++)   // se da una pasada
-                {
-                    if (A[i - salto] > A[i]) {       // y si están desordenados
-                        aux = A[i];                  // se reordenan
-                        A[i] = A[i - salto];
-                        A[i - salto] = aux;
-                        cambios = true;              // y se marca como cambio.                                   
+            int salto, aux, i, cont1 = 0, cont2 = 0;
+            boolean cambios;
+
+
+            for (salto = a.length / 2; salto != 0; salto /= 2) {
+                cont1++;
+                cambios = true;
+                while (cambios) {   // Mientras se intercambie algún elemento                                         
+                    cont1++;
+                    cambios = false;
+                    for (i = salto; i < a.length; i++){// se da una pasada
+                        cont1++;
+                        if (a[i - salto] > a[i]) {       // y si están desordenados
+                            cont2++;
+                            aux = a[i];                  // se reordenan
+                            a[i] = a[i - salto];
+                            a[i - salto] = aux;
+                            cambios = true;              // y se marca como cambio.                                   
+                        }
                     }
                 }
             }
-        }
-        return new DatosOrdenados(A);       
-}
-static void Impresion (int[] numeros){
+            System.out.println("SS-iteraciones = " + cont1);
+            Ordenamientos.ta.append("SS-iteraciones = " + cont1+"\n");
+            System.out.println("SS-comparaciones = " + cont2);
+            Ordenamientos.ta.append("SS-comparaciones = " + cont2+"\n");
+            return new DatosOrdenados(a);       
+    }
+/*static void Impresion (int[] numeros){
     for (int i = 0; i < numeros.length; i++){
         System.out.println("["+numeros[i]+"]");
     }
-}
+}*/
 
    public DatosOrdenados Quicksort(){
        int [] q = this.getCopiaValores();
        this.Quicksort(q, 0, q.length - 1);
        System.out.println("QS-comparaciones = " + cq1);
+       Ordenamientos.ta.append("QS-comparaciones = " + cq1+"\n");
        System.out.println("QS-iteraciones = " + cq2);
+       Ordenamientos.ta.append("QS-iteraciones = " + cq2+"\n");
        return new DatosOrdenados(q);
    }
    static int cq1 = 0;
