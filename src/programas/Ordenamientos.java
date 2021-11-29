@@ -119,6 +119,24 @@ public class Ordenamientos extends javax.swing.JFrame {
                 t = t2 - t1;
                 ta.append("n = "+ n + " t = " + t + " ns.\n" + mosd+"\n\n");
             }
+            if(ra.isSelected() && as.isSelected()){
+                t1 = System.nanoTime();
+                ta.append("Radix Ascendente:\n");
+                ta.append(d+"\n");
+                DatosOrdenados mora = m.Radixsort();
+                t2 = System.nanoTime();   // stop
+                t = t2 - t1;
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + mora+"\n\n");
+            }
+            if(ra.isSelected() && des.isSelected()){
+                t1 = System.nanoTime();
+                ta.append("Radix Descendente:\n");
+                ta.append(d+"\n");
+                DatosOrdenados mord = m.RadixsortD();
+                t2 = System.nanoTime();   // stop
+                t = t2 - t1;
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + mord+"\n\n");
+            }
         }
     }
 
