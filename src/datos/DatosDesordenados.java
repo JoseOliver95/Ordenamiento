@@ -180,17 +180,50 @@ public class DatosDesordenados {
               j++;
               k++;
 	  }
-   }
+	}
+
+public DatosOrdenados Shellsort(int A[]){
+  int [] a = this.getCopiaValores();
+
+        int salto, aux, i;
+        boolean cambios;
+        
+  
+        for (salto = A.length / 2; salto != 0; salto /= 2) {
+            cambios = true;
+            while (cambios) {   // Mientras se intercambie algún elemento                                         
+                cambios = false;
+                for (i = salto; i < A.length; i++)   // se da una pasada
+                {
+                    if (A[i - salto] > A[i]) {       // y si están desordenados
+                        aux = A[i];                  // se reordenan
+                        A[i] = A[i - salto];
+                        A[i - salto] = aux;
+                        cambios = true;              // y se marca como cambio.                                   
+                    }
+                }
+            }
+        }
+        return new DatosOrdenados(A);       
+}
+static void Impresion (int[] numeros){
+    for (int i = 0; i < numeros.length; i++){
+        System.out.println("["+numeros[i]+"]");
+    }
+}
+
    public DatosOrdenados Quicksort(){
        int [] q = this.getCopiaValores();
        this.Quicksort(q, 0, q.length - 1);
-       System.out.println("QS-comparaciones = " + cq);
+       System.out.println("QS-comparaciones = " + cq1);
+       System.out.println("QS-iteraciones = " + cq2);
        return new DatosOrdenados(q);
    }
-   static int cq = 0;
+   static int cq1 = 0;
+   static int cq2 = 0;
    private void Quicksort(int[] arr, int low, int high){
         if(low < high){
-            cq++;
+            cq1++;
             int pi = Quick(arr, low, high);
             
             Quicksort(arr, low, pi - 1);
@@ -203,8 +236,9 @@ public class DatosDesordenados {
        int i = (low - 1);
        
        for(int j = low; j <= high - 1; j++){
-           cq++;
+           cq2++;
            if(arr[j] < pivote){
+               cq1++;
                i++;
                int temp = arr[i];
                arr[i] = arr[j];
