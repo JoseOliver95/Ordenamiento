@@ -49,21 +49,39 @@ public class Ordenamientos extends javax.swing.JFrame {
         }else{
             if(bu.isSelected() && as.isSelected()){
                 t1 = System.nanoTime();
-                ta.append("Burbuja:\n");
+                ta.append("Burbuja Ascendente:\n");
                 ta.append(d+"\n");
-                DatosOrdenados mob = m.bubbleSort();
+                DatosOrdenados moba = m.bubbleSort();
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
-                ta.append("n = "+ n + " t = " + t +"ns.\n"+ mob+"\n\n");
+                ta.append("n = "+ n + " t = " + t +"ns.\n"+ moba+"\n\n");
+            }
+            if(bu.isSelected() && des.isSelected()){
+                t1 = System.nanoTime();
+                ta.append("Burbuja Descendente:\n");
+                ta.append(d+"\n");
+                DatosOrdenados mobd = m.bubbleSortD();
+                t2 = System.nanoTime();   // stop
+                t = t2 - t1;
+                ta.append("n = "+ n + " t = " + t +"ns.\n"+ mobd+"\n\n");
             }
             if(in.isSelected() && as.isSelected()){
                 t1 = System.nanoTime();
-                ta.append("Insert:\n");
+                ta.append("Insert Ascendente:\n");
                 ta.append(d+"\n");
-                DatosOrdenados moi = m.insertSort();
+                DatosOrdenados moia = m.insertSort();
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
-                ta.append("n = "+ n + " t = " + t + " ns.\n" + moi+"\n\n");
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + moia+"\n\n");
+            }
+            if(in.isSelected() && des.isSelected()){
+                t1 = System.nanoTime();
+                ta.append("Insert Descendente:\n");
+                ta.append(d+"\n");
+                DatosOrdenados moid = m.insertSortD();
+                t2 = System.nanoTime();   // stop
+                t = t2 - t1;
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + moid+"\n\n");
             }
             if(qu.isSelected() && as.isSelected()){
                 t1 = System.nanoTime();
@@ -85,12 +103,21 @@ public class Ordenamientos extends javax.swing.JFrame {
             }
             if(sh.isSelected() && as.isSelected()){
                 t1 = System.nanoTime();
-                ta.append("ShellSort:\n");
+                ta.append("ShellSort Ascendente:\n");
                 ta.append(d+"\n");
-                DatosOrdenados mos = m.Shellsort();
+                DatosOrdenados mosa = m.Shellsort();
                 t2 = System.nanoTime();   // stop
                 t = t2 - t1;
-                ta.append("n = "+ n + " t = " + t + " ns.\n" + mos+"\n\n");
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + mosa+"\n\n");
+            }
+            if(sh.isSelected() && des.isSelected()){
+                t1 = System.nanoTime();
+                ta.append("ShellSort Descendente:\n");
+                ta.append(d+"\n");
+                DatosOrdenados mosd = m.ShellsortD();
+                t2 = System.nanoTime();   // stop
+                t = t2 - t1;
+                ta.append("n = "+ n + " t = " + t + " ns.\n" + mosd+"\n\n");
             }
         }
     }
@@ -164,7 +191,7 @@ public class Ordenamientos extends javax.swing.JFrame {
 
         ta.setBackground(new java.awt.Color(0, 0, 0));
         ta.setColumns(20);
-        ta.setFont(new java.awt.Font("Arial Black", 0, 13)); // NOI18N
+        ta.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         ta.setForeground(new java.awt.Color(255, 255, 255));
         ta.setRows(5);
         jScrollPane1.setViewportView(ta);
@@ -203,9 +230,7 @@ public class Ordenamientos extends javax.swing.JFrame {
                                 .addComponent(ra)
                                 .addGap(52, 52, 52))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(acept)
-                                    .addComponent(clean))
+                                .addComponent(acept)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,6 +247,10 @@ public class Ordenamientos extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(tf2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addComponent(clean)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,10 +277,10 @@ public class Ordenamientos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(acept)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(clean)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();

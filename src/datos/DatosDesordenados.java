@@ -97,6 +97,29 @@ public class DatosDesordenados {
         Ordenamientos.ta.append("BS-intercambios = " + ci+"\n");
         return new DatosOrdenados(arreglo);
     }
+    public DatosOrdenados bubbleSortD(){
+        int [] arreglo = this.getCopiaValores();
+        int n = arreglo.length;
+        int cont = 0;
+        int ci = 0;
+        for (int i=0; i < n-1; i++){
+            for (int j=0; j < n-i-1; j++){
+                cont++;
+                if (arreglo[j] < arreglo[j+1]){
+                    // intercambiar: swap
+                    ci++;
+                    int temporal = arreglo[j];
+                    arreglo[j] = arreglo[j+1];
+                    arreglo[j+1] = temporal;
+                }
+            }
+        }
+        System.out.println("BS-comparaciones = " + cont);
+        Ordenamientos.ta.append("BS-comparaciones = " + cont+"\n");
+        System.out.println("BS-intercambios = " + ci);
+        Ordenamientos.ta.append("BS-intercambios = " + ci+"\n");
+        return new DatosOrdenados(arreglo);
+    }
     
        
     
@@ -110,6 +133,27 @@ public class DatosDesordenados {
 		j = i;
 		aux = a[i];
 		while (j >0 && aux < a[j-1]){
+                   cont++;
+                   a[j] = a[j-1];
+                   j--; 
+		}
+		a[j] = aux; 
+	}
+        System.out.println("IS-comparaciones = " + cont);
+        Ordenamientos.ta.append("IS-comparaciones = " + cont+"\n");
+	// devolver los datos ordenados
+        return new DatosOrdenados(a);
+    }
+    public DatosOrdenados insertSortD(){
+         // obtener una copia de los datos desordenados
+        int [] a = this.getCopiaValores();
+        
+	int i, j, aux; 
+	int cont=0; 
+	for ( i = 1; i < a.length; i++){
+		j = i;
+		aux = a[i];
+		while (j >0 && aux > a[j-1]){
                    cont++;
                    a[j] = a[j-1];
                    j--; 
@@ -207,6 +251,37 @@ public class DatosDesordenados {
                     for (i = salto; i < a.length; i++){// se da una pasada
                         cont1++;
                         if (a[i - salto] > a[i]) {       // y si están desordenados
+                            cont2++;
+                            aux = a[i];                  // se reordenan
+                            a[i] = a[i - salto];
+                            a[i - salto] = aux;
+                            cambios = true;              // y se marca como cambio.                                   
+                        }
+                    }
+                }
+            }
+            System.out.println("SS-iteraciones = " + cont1);
+            Ordenamientos.ta.append("SS-iteraciones = " + cont1+"\n");
+            System.out.println("SS-comparaciones = " + cont2);
+            Ordenamientos.ta.append("SS-comparaciones = " + cont2+"\n");
+            return new DatosOrdenados(a);       
+    }
+    public DatosOrdenados ShellsortD(){
+      int [] a = this.getCopiaValores();
+
+            int salto, aux, i, cont1 = 0, cont2 = 0;
+            boolean cambios;
+
+
+            for (salto = a.length / 2; salto != 0; salto /= 2) {
+                cont1++;
+                cambios = true;
+                while (cambios) {   // Mientras se intercambie algún elemento                                         
+                    cont1++;
+                    cambios = false;
+                    for (i = salto; i < a.length; i++){// se da una pasada
+                        cont1++;
+                        if (a[i - salto] < a[i]) {       // y si están desordenados
                             cont2++;
                             aux = a[i];                  // se reordenan
                             a[i] = a[i - salto];
